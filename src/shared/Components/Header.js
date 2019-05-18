@@ -21,7 +21,7 @@ const Header = ({auth}) => {
 }
 
 function mapStateToProps({ auth }) {
-  return {auth}
+  return { auth }
 }
 
 export default connect(mapStateToProps)(Header)

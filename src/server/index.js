@@ -25,14 +25,28 @@ app.use(express.static('build/public'))
 app.get('*',  async (req, res, next) => {
   const store = Store(req)
 
-  const promises = matchRoutes(routes, req.path).map(({route}) => {
+  const promises = matchRoutes(routes, req.path)
+  .map(({route}) => {
     return route.loadData ? route.loadData(store) : null
+  }).map(promise=>{
+    if(promise) {
+      return new Promise((resolve, rej) => {
+        promise.then(resolve).catch(resolve)
+      })
+    }
   })
   
   await Promise.all(promises).then(()=> {
+    const context = {}
     const initialState= store.getState()
-    const html = <Html req={req} store={store} state={initialState} />
-    res.send(`<!doctype html>\n${renderToStaticMarkup(html)}`)
+    const html = Html (req, store, initialState, context)
+    if(context.url) {
+      return res.redirect(301, context.url)
+    }
+    if(context.notFound) {
+      res.status(404)
+    }
+    res.status(200).send(html)
   })  
 })
 
