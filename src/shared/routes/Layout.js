@@ -3,22 +3,23 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 import { renderRoutes } from 'react-router-config'
 
+
 // A Routes file is a good shared entry-point between client and server
 import routes from './'
 
 const Layout = () =>
   <div>
     <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
+      <ul className="header-navbar">
+        <li className="header-navbar-li">
+          <Link className="header-navbar-link" to="/">Home</Link>
         </li>
-        <li>
-          <Link to="/users">Users list</Link>
+        <li className="header-navbar-li">
+          <Link className="header-navbar-link" to="/users">Users list</Link>
         </li>
       </ul>
     </nav> 
-    <div>{renderRoutes(routes)}</div>
+    <div className="container text-center">{renderRoutes(routes)}</div>
   </div>
 
 export default Layout
