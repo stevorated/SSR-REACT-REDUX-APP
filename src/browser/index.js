@@ -13,16 +13,16 @@ import reducers from '../shared/reducers'
 import Layout from '../shared/routes/Layout'
 
 const api = axios.create({
-  baseURL: '/api'
+  baseURL: '/api',
 })
 const initialState = window.__INITIAL_STATE__ 
 delete window.__INITIAL_STATE__
+
 const store = createStore(
   reducers, 
   initialState, 
   composeWithDevTools(applyMiddleware(thunk.withExtraArgument(api)))
   )
-
 
 hydrate(
     <Provider store={store}>

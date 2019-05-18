@@ -12,10 +12,10 @@ const Layout = () =>
     <nav>
       <ul className="header-navbar">
         <li className="header-navbar-li">
-          <Link className="header-navbar-link" to="/">Home</Link>
+          <Link className="header-navbar-link2" to="/">Home</Link>
         </li>
         <li className="header-navbar-li">
-          <Link className="header-navbar-link" to="/users">Users list</Link>
+          <Link className="header-navbar-link2" to="/users">Users list</Link>
         </li>
       </ul>
     </nav> 
