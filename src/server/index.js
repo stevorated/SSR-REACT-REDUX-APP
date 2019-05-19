@@ -1,12 +1,12 @@
 import express from 'express'
 import cors from 'cors'
-import { renderToStaticMarkup } from 'react-dom/server'
-import React from 'react'
+// import { renderToStaticMarkup } from 'react-dom/server'
+// import React from 'react'
 import { matchRoutes } from 'react-router-config'
 import proxy from 'express-http-proxy'
 
 import routes from '../shared/routes'
-import { Html, Store } from '../helpers'
+import { renderer, Store } from '../helpers'
 const PORT = process.env.PORT || 3000
 const app = express()
 
@@ -39,7 +39,7 @@ app.get('*',  async (req, res, next) => {
   await Promise.all(promises).then(()=> {
     const context = {}
     const initialState= store.getState()
-    const html = Html (req, store, initialState, context)
+    const html = renderer(req, store, initialState, context)
     if(context.url) {
       return res.redirect(301, context.url)
     }

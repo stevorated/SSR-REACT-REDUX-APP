@@ -3,6 +3,7 @@ import React, { Component, useState } from 'react'
 import { connect } from 'react-redux'
 import { Spinner } from 'reactstrap'
 import { fetchUsers } from '../actions'
+import { Helmet } from 'react-helmet'
 
 class UsersListPage extends Component {
   state = {
@@ -21,6 +22,11 @@ class UsersListPage extends Component {
   render() {
     return (
       <div className="container pt-4">
+      <Helmet>
+        <title>My App</title>
+        <meta property="og:title" content="My App" />
+      </Helmet>
+      <h1>Public Data</h1>
       {this.state.loader && <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" />}
         {this.renderUsers()}
       </div>

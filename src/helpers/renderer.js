@@ -9,7 +9,7 @@ import '../assets/css/style.css'
 // import 'bootstrap/dist/css/bootstrap.css'
 import serialize from 'serialize-javascript'
 
-export default function Html (req, store, state, context) {
+export default function renderer (req, store, state, context) {
   const App = (
     <Provider store={store}>
       <StaticRouter location={req.url} context={context}>

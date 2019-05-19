@@ -1,7 +1,7 @@
-import Html from './Html'
+import renderer from './renderer'
 import Store from './Store'
 
 export {
   Store,
-  Html
+  renderer
 }
